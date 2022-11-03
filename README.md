@@ -11,11 +11,15 @@ Assuming you've cloned this repo to `/home/user/lurk-emacs`, in the `*scratch*` 
 ;; or whatever path you want to use as a temporary local package archive
 ```
 `M-x eval-buffer`
+
 `M-x package-upload-file` `RET` `/home/user/lurk-emacs/lurk-mode.el`
+
+`M-x package-install` `RET` `lurk-mode`
  
 ## Configuration
 `M-x customize-variable` `RET`, enter the location of your lurk binary, 
-eg `/home/user/lurk-rs/target/release/lurkrs`, and save the changes
+eg `/home/user/lurk-rs/target/release/lurkrs`, and save the changes.
+
 Also add 
 ```emacs-lisp
 (require 'lurk-mode)
