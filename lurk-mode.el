@@ -1,4 +1,4 @@
-;;; lurk-mode.el --- A major mode for editing lurk files
+;;; lurk-mode.el --- A major mode for editing lurk files -*- lexical-binding: t; -*-
 ;; Authors: Jeff Weiss <jweiss@protocol.ai>
 ;; Maintainer: Jeff Weiss <jweiss@protocol.ai>
 ;; URL: http://github.com/lurk-lang/lurk-emacs

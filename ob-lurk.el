@@ -1,4 +1,4 @@
-;;; ob-lurk.el --- Evaluate lurk code blocks in org mode
+;;; ob-lurk.el --- Evaluate lurk code blocks in org mode -*- lexical-binding: t; -*-
 ;; Authors: Jeff Weiss <jweiss@protocol.ai>
 ;; Maintainer: Jeff Weiss <jweiss@protocol.ai>
 ;; URL: http://github.com/lurk-lang/lurk-emacs
