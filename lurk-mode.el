@@ -6,9 +6,6 @@
 ;; Keywords: languages lurk lisp
 ;; Version: 0.1.2
 ;; Package-Requires: ((emacs "25.1"))
-
-;; This file is not part of GNU Emacs.
-
 ;;; Commentary:
 
 ;; A major mode based on scheme.  Also provides a REPL buffer.
