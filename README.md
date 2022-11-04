@@ -20,12 +20,6 @@ Assuming you've cloned this repo to `/home/user/lurk-emacs`, in the `*scratch*` 
 `M-x customize-variable` `RET`, enter the location of your lurk binary, 
 eg `/home/user/lurk-rs/target/release/lurkrs`, and save the changes.
 
-Also add 
-```emacs-lisp
-(require 'lurk-mode)
-```
-to your emacs init file. You will also need to eval that same expression now if you don't want to restart emacs.
-
 ## To start a repl
 
 `M-x lurk-repl`
