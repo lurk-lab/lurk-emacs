@@ -2,9 +2,9 @@
 ;; Authors: Jeff Weiss <jweiss@protocol.ai>
 ;; Maintainer: Jeff Weiss <jweiss@protocol.ai>
 ;; URL: http://github.com/lurk-lang/lurk-emacs
-;; Package-Version: 20221103.3
 ;; Keywords: languages lurk lisp
-;; Version: 0.1.2
+;; Version: 0.1.3
+;; SPDX-License-Identifier: Apache-2.0 AND MIT
 ;; Package-Requires: ((emacs "25.1"))
 ;;; Commentary:
 
