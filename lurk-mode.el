@@ -3,7 +3,7 @@
 ;; Maintainer: Jeff Weiss <jweiss@protocol.ai>
 ;; URL: http://github.com/lurk-lang/lurk-emacs
 ;; Keywords: languages lurk lisp
-;; Version: 0.1.3
+;; Version: 0.1.4
 ;; SPDX-License-Identifier: Apache-2.0 AND MIT
 ;; Package-Requires: ((emacs "25.1"))
 ;;; Commentary:
@@ -24,6 +24,8 @@
 ;;   M-x lurk-repl
 
 ;;; Code:
+(require 'comint)
+
 (defvar lurk-keywords
   '("lambda" "let" "letrec" "cons" "strcons" "hide" "begin" "car" "cdr"
     "commit" "num" "comm" "char" "eval" "open" "secret" "atom" "emit" "if"
@@ -56,6 +58,15 @@
 	       (regexp-opt lurk-keywords t)
 	       "\\>")
 	      font-lock-keyword-face)))
+
+(defun lurk-eval-last-sexp ()
+  "Send the last sexp to the lurk repl to be evaluated."
+  (interactive)
+  (append-to-buffer "*lurk*"
+		    (point)
+		    (save-excursion (backward-sexp) (point)))
+  (with-current-buffer "*lurk*"
+    (comint-send-input)))
 
 (provide 'lurk-mode)
 ;;; lurk-mode.el ends here
