@@ -3,7 +3,7 @@
 ;; Maintainer: Jeff Weiss <jweiss@protocol.ai>
 ;; URL: http://github.com/lurk-lang/lurk-emacs
 ;; Keywords: languages lurk lisp
-;; Version: 0.1.4
+;; Version: 0.1.5
 ;; SPDX-License-Identifier: Apache-2.0 AND MIT
 ;; Package-Requires: ((emacs "25.1"))
 ;;; Commentary:
@@ -26,16 +26,19 @@
 ;;; Code:
 (require 'comint)
 
-(defvar lurk-keywords
+(defconst lurk-keywords
   '("lambda" "let" "letrec" "cons" "strcons" "hide" "begin" "car" "cdr"
     "commit" "num" "comm" "char" "eval" "open" "secret" "atom" "emit" "if"
     "current-env"))
+
+(defconst lurk-font-lock-keywords
+  `((,(regexp-opt lurk-keywords 'words) . (0 font-lock-keyword-face))))
 
 ;;;###autoload
 (define-derived-mode lurk-mode scheme-mode "Lurk"
   "Lurk mode is a major mode for editing Lurk files."
 
-  (setq font-lock-defaults '(lurk-font-lock-keywords)))
+  (add-hook 'lurk-mode-hook (lambda () (font-lock-add-keywords nil lurk-font-lock-keywords))))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.lurk\\'" . lurk-mode))
@@ -51,13 +54,6 @@
   (interactive)
   (run-lisp lurk-executable)
   (rename-buffer "*lurk*"))
-
-(defvar lurk-font-lock-keywords
-  (list (cons (concat
-	       "("
-	       (regexp-opt lurk-keywords t)
-	       "\\>")
-	      font-lock-keyword-face)))
 
 (defun lurk-eval-last-sexp ()
   "Send the last sexp to the lurk repl to be evaluated."
