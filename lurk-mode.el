@@ -43,7 +43,7 @@
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.lurk\\'" . lurk-mode))
 
-(defcustom lurk-executable "lurk"
+(defcustom lurk-executable "lurkrs"
   "Location of the lurk binary."
   :type 'string
   :group 'lurk)
