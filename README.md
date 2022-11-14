@@ -23,6 +23,13 @@ location of your lurk binary, eg
 
 If `lurkrs` is installed on your `PATH`, you don't need to change
 anything.
-## To start a repl
+## Usage
+### Start a REPL
 
-`M-x lurk-repl`
+Run `M-x lurk-repl`
+
+### Evaluate expressions
+
+In a .lurk source file, you can run `M-x lurk-eval-last-expression` to
+evaluate the given expression preceding point. The result will be
+shown in the repl buffer.

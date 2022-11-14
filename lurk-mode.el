@@ -19,9 +19,14 @@
 
 ;;   M-x customize-variable RET lurk-executable
 
-;; then set the value to be the full path to the lurk binary.  Next run
+;; then set the value to be the location of the lurk binary (either
+;; full path or leave as-is if it's installed on PATH).  Next run
 
 ;;   M-x lurk-repl
+
+;; In a .lurk source file, you can run M-x lurk-eval-last-expression
+;; to evaluate the given expression preceding point. The result will
+;; be shown in the repl buffer.
 
 ;;; Code:
 (require 'comint)
