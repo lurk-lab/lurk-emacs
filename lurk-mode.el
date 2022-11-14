@@ -41,9 +41,13 @@
 
 ;;;###autoload
 (define-derived-mode lurk-mode scheme-mode "Lurk"
-  "Lurk mode is a major mode for editing Lurk files."
+  "Lurk mode is a major mode for editing Lurk files.
 
-  (add-hook 'lurk-mode-hook (lambda () (font-lock-add-keywords nil lurk-font-lock-keywords))))
+\\{lurk-mode-map}"
+
+  (add-hook 'lurk-mode-hook
+	    (lambda ()
+	      (font-lock-add-keywords nil lurk-font-lock-keywords))))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.lurk\\'" . lurk-mode))
@@ -68,6 +72,12 @@
 		    (save-excursion (backward-sexp) (point)))
   (with-current-buffer "*lurk*"
     (comint-send-input)))
+
+(defvar lurk-mode-map nil "Keymap for `lurk-mode'")
+(progn
+  (setq lurk-mode-map (make-sparse-keymap))
+  (define-key lurk-mode-map (kbd "C-c C-r") 'lurk-repl)
+  (define-key lurk-mode-map (kbd "C-x C-e") 'lurk-eval-last-sexp))
 
 (provide 'lurk-mode)
 ;;; lurk-mode.el ends here
