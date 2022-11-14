@@ -19,9 +19,14 @@
 
 ;;   M-x customize-variable RET lurk-executable
 
-;; then set the value to be the full path to the lurk binary.  Next run
+;; then set the value to be the location of the lurk binary (either
+;; full path or leave as-is if it's installed on PATH).  Next run
 
 ;;   M-x lurk-repl
+
+;; In a .lurk source file, you can run M-x lurk-eval-last-expression
+;; to evaluate the given expression preceding point. The result will
+;; be shown in the repl buffer.
 
 ;;; Code:
 (require 'comint)
@@ -36,14 +41,18 @@
 
 ;;;###autoload
 (define-derived-mode lurk-mode scheme-mode "Lurk"
-  "Lurk mode is a major mode for editing Lurk files."
+  "Lurk mode is a major mode for editing Lurk files.
 
-  (add-hook 'lurk-mode-hook (lambda () (font-lock-add-keywords nil lurk-font-lock-keywords))))
+\\{lurk-mode-map}"
+
+  (add-hook 'lurk-mode-hook
+	    (lambda ()
+	      (font-lock-add-keywords nil lurk-font-lock-keywords))))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.lurk\\'" . lurk-mode))
 
-(defcustom lurk-executable "lurk"
+(defcustom lurk-executable "lurkrs"
   "Location of the lurk binary."
   :type 'string
   :group 'lurk)
@@ -63,6 +72,12 @@
 		    (save-excursion (backward-sexp) (point)))
   (with-current-buffer "*lurk*"
     (comint-send-input)))
+
+(defvar lurk-mode-map nil "Keymap for `lurk-mode'")
+(progn
+  (setq lurk-mode-map (make-sparse-keymap))
+  (define-key lurk-mode-map (kbd "C-c C-r") 'lurk-repl)
+  (define-key lurk-mode-map (kbd "C-x C-e") 'lurk-eval-last-sexp))
 
 (provide 'lurk-mode)
 ;;; lurk-mode.el ends here

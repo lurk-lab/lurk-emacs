@@ -17,9 +17,19 @@ Assuming you've cloned this repo to `/home/user/lurk-emacs`, in the `*scratch*` 
 `M-x package-install` `RET` `lurk-mode`
  
 ## Configuration
-`M-x customize-variable` `RET`, enter the location of your lurk binary, 
-eg `/home/user/lurk-rs/target/release/lurkrs`, and save the changes.
+`M-x customize-variable` `RET`, `lurk-executable` `RET`, enter the
+location of your lurk binary, eg
+`/home/user/lurk-rs/target/release/lurkrs`, and save the changes.
 
-## To start a repl
+If `lurkrs` is installed on your `PATH`, you don't need to change
+anything.
+## Usage
+### Start a REPL
 
-`M-x lurk-repl`
+Run `M-x lurk-repl`
+
+### Evaluate expressions
+
+In a .lurk source file, you can run `M-x lurk-eval-last-expression` to
+evaluate the given expression preceding point. The result will be
+shown in the repl buffer.
