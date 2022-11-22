@@ -3,7 +3,7 @@
 ;; Maintainer: Jeff Weiss <jweiss@protocol.ai>
 ;; URL: http://github.com/lurk-lang/lurk-emacs
 ;; Keywords: languages lurk lisp
-;; Version: 0.1.6
+;; Version: 0.1.7
 ;; SPDX-License-Identifier: Apache-2.0 AND MIT
 ;; Package-Requires: ((emacs "25.1") (lurk-mode "0.1.6"))
 
