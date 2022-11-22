@@ -3,9 +3,9 @@
 ;; Maintainer: Jeff Weiss <jweiss@protocol.ai>
 ;; URL: http://github.com/lurk-lang/lurk-emacs
 ;; Keywords: languages lurk lisp
-;; Version: 0.1.3
+;; Version: 0.1.6
 ;; SPDX-License-Identifier: Apache-2.0 AND MIT
-;; Package-Requires: ((emacs "25.1") (lurk-mode "0.1.2"))
+;; Package-Requires: ((emacs "25.1") (lurk-mode "0.1.6"))
 
 ;;; Commentary:
 
@@ -20,11 +20,14 @@
 (require 'ob)
 (require 'lurk-mode)
 
-(defun org-babel-execute:lurk (body _)
-  "Execute BODY (a block of lurk code) with org-babel."
-  (org-babel-eval
-   lurk-executable
-   body))
+(defun org-babel-execute:lurk (body params)
+  "Execute BODY (a block of lurk code) with org-babel. Use :var
+debug='t for detailed logging"
+  (let ((debug (assq 'debug (org-babel--get-vars params))))
+    (org-babel-eval (format "%s%s"
+			    (if debug "RUST_LOG=info " "")
+			    lurk-executable)
+		    body)))
 
 (provide 'ob-lurk)
 ;;; ob-lurk.el ends here
